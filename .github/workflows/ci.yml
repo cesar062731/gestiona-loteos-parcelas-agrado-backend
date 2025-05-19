@@ -1,0 +1,43 @@
+name: NestJS CI Backend
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  build_and_lint:
+    name: Build, Lint & Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x] # Puedes ajustar o agregar versiones de Node
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Linter
+        run: npm run lint
+
+      - name: Build Project
+        run: npm run build
+
+    # Descomenta y ajusta cuando tengas tests configurados
+    # - name: Run Unit & Integration Tests
+    #   run: npm run test
+
+    # Descomenta y ajusta cuando tengas tests e2e configurados
+    # - name: Run E2E Tests
+    #   run: npm run test:e2e
