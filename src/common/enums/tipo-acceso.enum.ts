@@ -1,0 +1,9 @@
+// Enum base para tipo-acceso
+export enum TipoAccesoEnum {
+  RESIDENTE = 'RESIDENTE',
+  VISITANTE = 'VISITANTE',
+  PROVEEDOR = 'PROVEEDOR',
+  PERSONAL_INTERNO = 'PERSONAL_INTERNO',
+  EMERGENCIA = 'EMERGENCIA',
+  OTRO = 'OTRO',
+}

@@ -1,0 +1,8 @@
+export enum TiposPublicacionEnum {
+  INFORMATIVA = 'INFORMATIVA',
+  EVENTO = 'EVENTO',
+  EMERGENCIA = 'EMERGENCIA',
+  OFERTA_DEMANDA = 'OFERTA_DEMANDA',
+  AVISO = 'AVISO',
+  OTRO = 'OTRO',
+}
