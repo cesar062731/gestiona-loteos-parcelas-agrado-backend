@@ -12,10 +12,10 @@ export class PasoAprobacion {
 
   @Column({
     type: process.env.NODE_ENV === 'test' ? 'text' : 'enum',
-    enum: PasoAprobacionEnum as unknown as object,
+    enum: PasoAprobacionEnum as Record<string, string>,
     default: PasoAprobacionEnum.PENDIENTE,
   })
-  estado: PasoAprobacionEnum;
+  estado!: PasoAprobacionEnum;
 
   @ManyToOne(() => FlujoAprobacion, (flujo) => flujo.pasos)
   flujo: FlujoAprobacion;

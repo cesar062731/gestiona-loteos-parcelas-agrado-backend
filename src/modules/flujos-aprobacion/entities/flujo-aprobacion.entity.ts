@@ -12,7 +12,7 @@ export class FlujoAprobacion {
 
   @Column({
     type: process.env.NODE_ENV === 'test' ? 'text' : 'enum',
-    enum: PasoAprobacionEnum,
+    enum: PasoAprobacionEnum as Record<string, string>,
     default: PasoAprobacionEnum.PENDIENTE,
   })
   estado: PasoAprobacionEnum;
