@@ -13,12 +13,12 @@ export class PublicacionInformativa {
   contenido: string;
 
   @Column({
-    type: 'enum',
+    type: process.env.NODE_ENV === 'test' ? 'text' : 'enum',
     enum: TiposPublicacionEnum,
     default: TiposPublicacionEnum.INFORMATIVA,
   })
   tipo: TiposPublicacionEnum;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   fechaPublicacion: Date;
 }

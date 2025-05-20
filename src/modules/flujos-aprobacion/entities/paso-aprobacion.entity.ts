@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { FlujoAprobacion } from './flujo-aprobacion.entity';
-import { EstadoAprobacionEnum } from '../../../common/enums/estado-aprobacion.enum';
+import { EstadoPasoAprobacionEnum } from '../../../common/enums/estado-aprobacion.enum';
 
 @Entity('paso_aprobacion')
 export class PasoAprobacion {
@@ -11,11 +11,11 @@ export class PasoAprobacion {
   nombre: string;
 
   @Column({
-    type: 'enum',
-    enum: EstadoAprobacionEnum,
-    default: EstadoAprobacionEnum.PENDIENTE,
+    type: process.env.NODE_ENV === 'test' ? 'text' : 'enum',
+    enum: EstadoPasoAprobacionEnum,
+    default: EstadoPasoAprobacionEnum.PENDIENTE,
   })
-  estado: EstadoAprobacionEnum;
+  estado: EstadoPasoAprobacionEnum;
 
   @ManyToOne(() => FlujoAprobacion, flujo => flujo.pasos)
   flujo: FlujoAprobacion;

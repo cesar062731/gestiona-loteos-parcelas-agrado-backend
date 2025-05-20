@@ -11,7 +11,7 @@ export class EspacioComun {
   nombre: string;
 
   @Column({
-    type: 'enum',
+    type: process.env.NODE_ENV === 'test' ? 'text' : 'enum',
     enum: TipoEspacioComunEnum,
     default: TipoEspacioComunEnum.OTRO,
   })

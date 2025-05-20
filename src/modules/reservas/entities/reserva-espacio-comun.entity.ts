@@ -13,14 +13,18 @@ export class ReservaEspacioComun {
   @Column({ length: 100 })
   usuarioReserva: string;
 
-  @Column({ type: 'timestamp' })
+  @Column({
+    type: process.env.NODE_ENV === 'test' ? 'datetime' : 'timestamp',
+  })
   fechaInicio: Date;
 
-  @Column({ type: 'timestamp' })
+  @Column({
+    type: process.env.NODE_ENV === 'test' ? 'datetime' : 'timestamp',
+  })
   fechaFin: Date;
 
   @Column({
-    type: 'enum',
+    type: process.env.NODE_ENV === 'test' ? 'text' : 'enum',
     enum: EstadoReservaEnum,
     default: EstadoReservaEnum.PENDIENTE,
   })
@@ -28,4 +32,11 @@ export class ReservaEspacioComun {
 
   @Column({ type: 'text', nullable: true })
   observaciones?: string;
+
+  @Column({
+    type: process.env.NODE_ENV === 'test' ? 'text' : 'enum',
+    enum: EstadoReservaEnum, // Cambia por el enum real
+    default: EstadoReservaEnum.PENDIENTE, // Cambia por el valor por defecto real
+  })
+  tuCampo: EstadoReservaEnum;
 }

@@ -10,7 +10,7 @@ export class Parcela {
   nombre: string;
 
   @Column({
-    type: 'enum',
+    type: process.env.NODE_ENV === 'test' ? 'text' : 'enum',
     enum: EstadoParcelaEnum,
     default: EstadoParcelaEnum.OTRO,
   })

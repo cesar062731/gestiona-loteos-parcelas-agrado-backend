@@ -15,6 +15,6 @@ export class ComentarioPublicacion {
   @Column({ length: 100 })
   autor: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   fechaComentario: Date;
 }

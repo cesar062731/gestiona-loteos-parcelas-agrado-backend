@@ -11,6 +11,6 @@ export class Encuesta {
   @Column({ type: 'text' })
   descripcion: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   fechaCreacion: Date;
 }

@@ -11,14 +11,14 @@ export class ProveedorServicio {
   nombre: string;
 
   @Column({
-    type: 'enum',
+    type: process.env.NODE_ENV === 'test' ? 'text' : 'enum',
     enum: EspecialidadProveedorEnum,
     default: EspecialidadProveedorEnum.OTRO,
   })
   especialidad: EspecialidadProveedorEnum;
 
   @Column({
-    type: 'enum',
+    type: process.env.NODE_ENV === 'test' ? 'text' : 'enum',
     enum: EstadoServicioProveedorEnum,
     default: EstadoServicioProveedorEnum.ACTIVO,
   })
