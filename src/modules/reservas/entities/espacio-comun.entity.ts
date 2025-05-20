@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { TipoEspacioComunEnum } from '../../../../common/enums/tipo-espacio-comun.enum';
+// Update the path below if the file exists elsewhere, or create the file if missing.
+import { TipoEspacioComunEnum } from '../../../common/enums/tipo-espacio-comun.enum';
 
 @Entity('espacio_comun')
 export class EspacioComun {
