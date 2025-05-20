@@ -2,7 +2,8 @@ import { DataSource } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
 
-ConfigModule.forRoot({ isGlobal: true });
+// Si forRoot devuelve una promesa, usa void para evitar el warning
+void ConfigModule.forRoot({ isGlobal: true });
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -16,3 +17,5 @@ export const AppDataSource = new DataSource({
   migrations: [join(__dirname, 'migrations/*.{ts,js}')],
   logging: process.env.DB_LOGS === 'true',
 });
+
+void AppDataSource.initialize();
