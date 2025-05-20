@@ -5,6 +5,7 @@ on:
     branches: [develop]
   pull_request:
     branches: [develop]
+  workflow_dispatch:
 
 jobs:
   build_and_lint:
@@ -34,10 +35,8 @@ jobs:
       - name: Build Project
         run: npm run build
 
-    # Descomenta y ajusta cuando tengas tests configurados
-    # - name: Run Unit & Integration Tests
-    #   run: npm run test
+      - name: Run Unit & Integration Tests
+        run: npm run test
 
-    # Descomenta y ajusta cuando tengas tests e2e configurados
-    # - name: Run E2E Tests
-    #   run: npm run test:e2e
+      - name: Run E2E Tests
+        run: npm run test:e2e
