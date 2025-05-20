@@ -6,7 +6,7 @@ export class ComentarioPublicacion {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => PublicacionInformativa, pub => pub.id)
+  @ManyToOne(() => PublicacionInformativa, (pub) => pub.id)
   publicacion: PublicacionInformativa;
 
   @Column({ type: 'text' })

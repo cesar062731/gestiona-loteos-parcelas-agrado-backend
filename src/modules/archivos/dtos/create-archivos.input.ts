@@ -3,5 +3,5 @@ import { InputType, Field } from '@nestjs/graphql';
 @InputType()
 export class CreateArchivosInput {
   @Field()
-  exampleField: String;
+  exampleField: string;
 }

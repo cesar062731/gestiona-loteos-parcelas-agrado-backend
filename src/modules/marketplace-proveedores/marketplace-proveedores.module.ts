@@ -5,10 +5,12 @@ import { CalificacionProveedor } from './entities/calificacion-proveedor.entity'
 import { ServicioContratado } from './entities/servicio-contratado.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([
-    ProveedorServicio,
-    CalificacionProveedor,
-    ServicioContratado,
-  ])],
+  imports: [
+    TypeOrmModule.forFeature([
+      ProveedorServicio,
+      CalificacionProveedor,
+      ServicioContratado,
+    ]),
+  ],
 })
 export class MarketplaceProveedoresModule {}

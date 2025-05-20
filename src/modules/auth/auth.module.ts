@@ -4,6 +4,6 @@ import { MembresiasLoteoModule } from '../membresias-loteo/membresias-loteo.modu
 import { ArchivosModule } from '../archivos/archivos.module';
 
 @Module({
-  imports: [LoteosModule, MembresiasLoteoModule, ArchivosModule]
+  imports: [LoteosModule, MembresiasLoteoModule, ArchivosModule],
 })
 export class AuthModule {}

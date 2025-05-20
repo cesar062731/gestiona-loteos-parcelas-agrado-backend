@@ -4,6 +4,10 @@ import { GestionSuscripcionesBoModule } from './gestion-suscripciones-bo.module'
 import { MonitoreoOnboardingBoModule } from './monitoreo-onboarding-bo.module';
 
 @Module({
-  imports: [GestionUsuariosGlobalBoModule, GestionSuscripcionesBoModule, MonitoreoOnboardingBoModule]
+  imports: [
+    GestionUsuariosGlobalBoModule,
+    GestionSuscripcionesBoModule,
+    MonitoreoOnboardingBoModule,
+  ],
 })
 export class GestionLoteosBoModule {}

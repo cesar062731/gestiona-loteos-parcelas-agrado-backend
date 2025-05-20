@@ -6,7 +6,7 @@ export class ServicioContratado {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => ProveedorServicio, proveedor => proveedor.id)
+  @ManyToOne(() => ProveedorServicio, (proveedor) => proveedor.id)
   proveedor: ProveedorServicio;
 
   @Column({ type: 'date' })

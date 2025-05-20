@@ -12,6 +12,6 @@ export class CalificacionProveedor {
   @Column({ type: 'text', nullable: true })
   comentario?: string;
 
-  @ManyToOne(() => ProveedorServicio, proveedor => proveedor.id)
+  @ManyToOne(() => ProveedorServicio, (proveedor) => proveedor.id)
   proveedor: ProveedorServicio;
 }
