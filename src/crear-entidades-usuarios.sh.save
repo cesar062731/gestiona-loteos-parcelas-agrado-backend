@@ -1,0 +1,104 @@
+#!/bin/bash
+
+# Ruta base donde se crearán las entidades
+BASE_DIR="src/modules/usuarios/entities"
+
+# Crear archivo usuario.entity.ts
+cat > "$BASE_DIR/usuario.entity.ts" << 'EOF'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from 'typeorm';
+import { HabitanteParcela } from './habitante-parcela.entity';
+import { RolPlataforma } from 'src/common/enums/rol-plataforma.enum';
+
+@Entity('usuarios')
+export class Usuario {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column({ unique: true, nullable: true })
+  email?: string;
+
+  @Column({ nullable: true })
+  password?: string;
+
+  @Column()
+  nombre: string;
+
+  @Column()
+  apellido: string;
+
+  @Column({ unique: true, nullable: true })
+  rut?: string;
+
+  @Column({ nullable: true })
+  telefono?: string;
+
+  @Column({ type: 'enum', enum: RolPlataforma })
+  rol: RolPlataforma;
+
+  @Column({ default: true })
+  estaActivo: boolean;
+
+  @CreateDateColumn()
+  fechaCreacion: Date;
+
+  @UpdateDateColumn()
+  fechaActualizacion: Date;
+
+  @OneToMany(() => HabitanteParcela, (hp) => hp.usuario)
+  habitantesParcela: HabitanteParcela[];
+}
+EOF
+
+# Crear archivo habitante-parcela.entity.ts
+cat > "$BASE_DIR/habitante-parcela.entity.ts" << 'EOF'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  JoinColumn,
+} from 'typeorm';
+import { Usuario } from './usuario.entity';
+import { Parcela } from 'src/modules/parcelas/entities/parcela.entity';
+import { RolEnLoteo } from 'src/common/enums/rol-en-loteo.enum';
+
+@Entity('habitantes_parcela')
+export class HabitanteParcela {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column({ type: 'enum', enum: RolEnLoteo })
+  rolEnParcela: RolEnLoteo;
+
+  @Column({ type: 'date', nullable: true })
+  fechaInicioRelacion?: Date;
+
+  @Column({ type: 'date', nullable: true })
+  fechaFinRelacion?: Date;
+
+  @CreateDateColumn()
+  fechaCreacion: Date;
+
+  @UpdateDateColumn()
+  fechaActualizacion: Date;
+
+  @ManyToOne(() => Usuario, (usuario) => usuario.habitantesParcela, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'usuarioId' })
+  usuario: Usuario;
+
+  @ManyToOne(() => Parcela, (parcela) => parcela.habitantes, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'parcelaId' })
+  parcela: Parcela;
+}
+EOF
+
+echo "✅ Archivos creados en $BASE_DIR"

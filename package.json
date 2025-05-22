@@ -18,7 +18,10 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prepare": "husky"
+    "prepare": "husky",
+    "reset:test": "./reset-test-db.sh",
+    "seed:test": "NODE_ENV=test npx ts-node src/common/database/seed.ts",
+    "test:schema": "jest --config=jest.config.ts test/graphql-schema-validation.spec.ts"
   },
   "dependencies": {
     "@apollo/server": "^4.12.1",
@@ -37,6 +40,7 @@
     "@willsoto/nestjs-prometheus": "^6.0.2",
     "bcrypt": "^6.0.0",
     "bullmq": "^5.52.2",
+    "change-case": "^5.4.4",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.2",
     "ejs": "^3.1.10",
@@ -89,28 +93,11 @@
     "source-map-support": "^0.5.21",
     "sqlite3": "^5.1.7",
     "supertest": "^7.1.1",
-    "ts-jest": "^29.3.3",
+    "ts-jest": "^29.3.4",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.20.0"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
   }
 }
